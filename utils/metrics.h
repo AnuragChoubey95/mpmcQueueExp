@@ -126,7 +126,7 @@ struct Instrumentation {
      */
     static inline void on_enqueue_latency(ThreadMetrics& m, uint64_t ns, bool succ) {
         m.enq_count++;
-        m.enq_latencies.push_back(ns);
+        if (succ) m.enq_latencies.push_back(ns);
         m.enq_success.push_back(succ ? 1 : 0);
         if (!succ) m.failed_enqs++;
     }
@@ -139,7 +139,7 @@ struct Instrumentation {
      */
     static inline void on_dequeue_latency(ThreadMetrics& m, uint64_t ns, bool succ) {
         m.deq_count++;
-        m.deq_latencies.push_back(ns);
+        if (succ) m.deq_latencies.push_back(ns);
         m.deq_success.push_back(succ ? 1 : 0);
         if (!succ) m.failed_deqs++;
     }

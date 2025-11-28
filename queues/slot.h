@@ -4,6 +4,23 @@
 #define BLOCK_SIZE 64
 #define CAPACITY 2048
 
+// Very small spinlock implementation
+struct SpinLock {
+    std::atomic_flag flag = ATOMIC_FLAG_INIT;
+
+    void lock() {
+        // Pure spin
+        while (flag.test_and_set(std::memory_order_acquire)) {
+            // Optional: add a pause or yield for politeness
+            // std::this_thread::yield();
+        }
+    }
+
+    void unlock() {
+        flag.clear(std::memory_order_release);
+    }
+};
+
 /**
  * @brief Fixed-size slot used by all queue implementations.
  *

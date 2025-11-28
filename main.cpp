@@ -1,7 +1,5 @@
 #include <iostream>
-#include <vector>
 #include <string>
-#include <chrono>
 
 #include "queues/msgQueueMutex.h"
 #include "queues/msgQueueTwoLock.h"

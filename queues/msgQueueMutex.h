@@ -7,6 +7,7 @@
 #include "slot.h"
 #include "../utils/metrics.h"
 
+
 /**
  * @class MessageQueueMutex
  * @brief Fixed-size MPMC circular queue protected by a single global mutex.
